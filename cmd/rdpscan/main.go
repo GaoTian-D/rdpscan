@@ -56,7 +56,7 @@ func main() {
 		go func() {
 			for {
 				banner := <-outputQueue
-				gologger.Info().Msgf("%s\n", banner)
+				gologger.Print().Msgf("[+] %s\n", banner)
 			}
 		}()
 	}
