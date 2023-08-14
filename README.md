@@ -1,7 +1,7 @@
 # 使用说明
 ```
-$ rdpscan_linux_amd64_v1/rdpscan -i 8.135.43.106:3389
-[INF] 8.135.43.106:3389
+$ rdpscan -i 8.135.43.106:3389
+[+] 8.135.43.106:3389
 TargetName: iZntwcqcvh9v6nZ
 Product_Version: 6.1.7601
 OS: Windows 7 Service Pack 1/Windows Server 2008 R2 Service Pack 1

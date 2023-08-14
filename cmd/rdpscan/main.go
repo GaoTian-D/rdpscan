@@ -65,7 +65,7 @@ func main() {
 		gologger.Fatal().Msgf("Could not create runner: %s\n", err)
 	}
 	rdpRunner.Start()
-	gologger.Info().Msgf("读取待扫描源完成, 总 IP 数 %d\n", COUNT)
+	gologger.Print().Msgf("[+] 读取待扫描源完成, 总 IP 数 %d\n", COUNT)
 }
 
 func readFlags() error {
