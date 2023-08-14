@@ -79,6 +79,7 @@ func readFlags() error {
 		flagSet.IntVarP(&options.ConnectTimeOut, "connect-timeout", "ct", 4, "默认 rdp 连接超时"),
 		flagSet.IntVarP(&options.ReadTimeOut, "read-timeout", "rt", 4, "默认 rdp 读取超时"),
 		flagSet.StringVarP(&options.OutputPath, "output", "o", "", "结果输出文件"),
+		flagSet.CallbackVar(printVersion, "version", "版本显示"),
 	)
 
 	flagSet.CreateGroup("ratelimit", "Rate-Limit",
@@ -88,6 +89,11 @@ func readFlags() error {
 		return errors.Wrap(err, "could not parse flags")
 	}
 	return nil
+}
+
+func printVersion() {
+	gologger.Info().Msgf("GaoTian-D/rdpscan 版本: %s", "0.0.1")
+	os.Exit(0)
 }
 
 func newFileOutput(file string) (*os.File, error) {

@@ -8,4 +8,5 @@ type Options struct {
 	Port            int
 	ConnectTimeOut  int
 	ReadTimeOut     int
+	Version         string
 }
