@@ -45,6 +45,7 @@ type ConfirmPDU struct {
 // \x03\0\0\t\x02\xf0\x
 func ParseConnectionConfirm(buf []byte) (*ConfirmPDU, error) {
 	pdu := &ConfirmPDU{}
+	// 校验前 4 字节 tpktHeader
 	if len(buf) < 11 {
 		return nil, errors.New("confirm pdu 校验失败")
 	}
@@ -60,6 +61,7 @@ func ParseConnectionConfirm(buf []byte) (*ConfirmPDU, error) {
 	if err != nil || int(pdu.PacketLength) != len(buf) {
 		return nil, errors.New("packet length 校验失败")
 	}
+	// 校验 7 字节 x224Ccf
 	binary.Read(bytes.NewBuffer(buf[4:5]), binary.BigEndian, &pdu.LengthIndicator)
 	if err != nil || pdu.LengthIndicator+5 != uint8(pdu.PacketLength) {
 		return nil, errors.New("length indicator 校验失败")
@@ -82,6 +84,7 @@ func ParseConnectionConfirm(buf []byte) (*ConfirmPDU, error) {
 		// 正常为0000，扩展为0010
 		return nil, errors.New("class options 校验失败")
 	}
+	// todo. 校验可选的后 8 字节
 	return pdu, nil
 }
 
